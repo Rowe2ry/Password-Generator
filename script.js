@@ -1,6 +1,7 @@
 //simple function get a random character from any string passed into it
 function getRandom (charList) {
-  charlist.charAt(Math.floor(Math.random() * charList.length));
+  var chosenCharacter = charList.charAt(Math.floor(Math.random() * charList.length));
+  return chosenCharacter;
 }
 
 //error handler if the user does not adhere to the prompt criteria
@@ -29,10 +30,11 @@ function errorHandlerPassLength(userInputPassLength){
 
 //small function to add to the pool of characters that the password may contain
 function addCharacterSet(originalString, newString) {
-  originalString = originalString.concat(newString);
+  originalString += newString;
   return originalString;
 }
 
+// the real "meat" of this assignment. The function that generates the password.
 function generatePassword (){
   // declaring the variables for the various character sets
   var specialCharacters = " !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
@@ -52,7 +54,7 @@ function generatePassword (){
     validCharacterPool = addCharacterSet(validCharacterPool, specialCharacters);
     console.log("The user wants special characters.");
   } else {
-    console.log("the user has chosen to omit special characters.");
+    console.log("The user has chosen to omit special characters.");
   }
   
     // we are checking if the user wants to use UPPERCASE letters or not
@@ -60,7 +62,7 @@ function generatePassword (){
     validCharacterPool = addCharacterSet(validCharacterPool, capitalLetterCharacters);
     console.log("The user wants capital letters.");
   } else {
-    console.log("the user has chosen to omit capital letters.");
+    console.log("The user has chosen to omit capital letters.");
   }
 
     // we are checking if the user wants to use lowercase letters or not
@@ -68,7 +70,7 @@ function generatePassword (){
     validCharacterPool = addCharacterSet(validCharacterPool, lowercaseLetterCharacters);
     console.log("The user wants lowercase letters.");
   } else {
-    console.log("the user has chosen to omit lowercase letters.");
+    console.log("The user has chosen to omit lowercase letters.");
   }
 
     // we are checking if the user wants to use numbers or not
@@ -76,7 +78,7 @@ function generatePassword (){
     validCharacterPool = addCharacterSet(validCharacterPool, numbercharacters);
     console.log("The user wants numbers.");
   } else {
-    console.log("the user has chosen to omit numbers.");
+    console.log("The user has chosen to omit numbers.");
   }
 
   // we cannot generate a password as the user has denied all types of character sets we could have used.
@@ -86,9 +88,15 @@ function generatePassword (){
     password = "This is NOT your password, you need to generate a new one while carefully reading the questions.";
     return password;
   }
+  // resetting to a blank string to prepare for the "for" loop
+  password = "";
 
-  password = validCharacterPool;
+  // "for" loop should add a random character to the password to the length desired
+  for (i = 0; i < Number(passLengthDesired); i++) {
+    password+= getRandom(validCharacterPool);
+  }
 
+  //return statement gives the generated password back to the page
   return password;
 }
 
