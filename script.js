@@ -7,8 +7,9 @@ function getRandom (charList) {
 //error handler if the user does not adhere to the prompt criteria
 function errorHandlerPassLength(userInputPassLength){
 // We check to see if the password is a number. And that falls between 8 and 128
+var testPass = false;
+
   if (userInputPassLength >= 8 && userInputPassLength <= 128) {
-  
   console.log("Error handler check for password length - result:pass \n the users has chosen a " + userInputPassLength + " character long password.");
   } else if (userInputPassLength < 8) {
     window.alert("That number is too small. Passwords must be at least 8 characters long");
@@ -26,6 +27,9 @@ function errorHandlerPassLength(userInputPassLength){
     console.log("Error!!! Password length input by user was NaN.")
     return password;
   }
+
+  testPass= true;
+  return testPass;
 }
 
 //small function to add to the pool of characters that the password may contain
@@ -47,7 +51,10 @@ function generatePassword (){
   var passLengthDesired = window.prompt ("How many characters would you like in this password? (must be a number between 8 and 128)");
   
   //running my error handler function (I am pretty proud of this)
-  errorHandlerPassLength(Number(passLengthDesired))
+  if (typeof errorHandlerPassLength(Number(passLengthDesired)) != "boolean") {
+  console.log("error handler fail");
+  return password;
+  } 
 
   // we are checking if the user wants to use special characters or not
   if (window.confirm("1 of 4 — Do you want the password to contain special characters? (i.e. \"!\", \"?\", \"#\", etc.) \n Click \"okay\" for yes, and \"cancel\" for no.")) {
