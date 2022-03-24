@@ -132,7 +132,7 @@ function generatePassword (){
   password = "";
 
   // "for" loop should add a random character to the password to the length desired
-  for (i = 0; i < Number(passLengthDesired); i++) {
+  for (var i = 0; i < Number(passLengthDesired); i++) {
     password+= getRandom(validCharacterPool);
   }
 
