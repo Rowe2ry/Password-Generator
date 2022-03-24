@@ -8,6 +8,8 @@ A random password generator written in HTML, CSS, &amp; Javascript. This page wi
 
 Simply launch the index.html file in any browser and click the big red button on the page. Open the console log if you want to see behind the scenes.
 
+Click [here to launch the Live Page](https://rowe2ry.github.io/Password-Generator/).
+
 ## Usage
 
 When you are presented with the page, think of the password criteria you wish to meet and carefully read each question and answer them.
